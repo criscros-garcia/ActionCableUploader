@@ -10,6 +10,20 @@
   </head>
 
   <body>
+    <div class="flash">
+      <% flash.each do |key, value| %>
+        <%= tag.div value, class: "flash #{key}" %>
+      <% end %>
+    </div>
+
+    <% if signed_in? %>
+      Signed in as: <%= current_user.email %>
+      <%= button_to 'Sign Out', sign_out_path, method: :delete %>
+    <% else %>
+      <%= link_to 'Sign in', sign_in_path %>
+    <% end %>
+
+
     <%= yield %>
   </body>
 </html>
